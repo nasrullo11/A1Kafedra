@@ -1,0 +1,174 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Kafedra o'qituvchilari</title>
+
+    <style>
+        /*th{*/
+        /*padding: 8px !important;*/
+        /*}*/
+        /*td{*/
+        /*padding-left: 8px !important;*/
+        /*max-width: fit-content;*/
+        /*}*/
+        .works {
+            overflow-y: scroll;
+            padding: 0 16px;
+        }
+        .nav-tabs .nav-link, .table th, .table td {
+            font-size: 14px !important;
+        }
+        #userTable {
+            width: 100% !important;
+        }
+        #userTable_wrapper {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Dynamic Table Full -->
+    <div class="block">
+        <div class="block-header">
+            <div>
+                <nav class="flex-sm-00-auto ml-sm-3 d-flex pr-1" aria-label="breadcrumb">
+                    <h3>Kafedra o'qituvchilar ro'yxati</h3>
+                    <div class="block-options">
+                        <!--<div class="d-inline-block dropdown">-->
+                        <a class="btn-shadow btn btn-info" href="/users/create.do">
+                            <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus"></i> </span>
+                            Qo'shish
+                        </a>
+
+                        <!--</div>-->
+                    </div>
+                </nav>
+            </div>
+            <div>
+                <h3>ning pedagogik ishlari</h3>
+            </div>
+
+
+        </div>
+        <div class="block-content block-content-sm d-flex justify-content-between">
+
+            <table id="userTable" class="table table-bordered table-hover table-striped table-vcenter">
+
+                <thead>
+                <tr>
+                    <th class="text-center" style="min-width: 60px"> <i class="far fa-user"></i> </th>
+                    <th style="min-width: 350px">F.I.Sh</th>
+<!--                    <th style="min-width: 300px">Login</th>-->
+<!--                    <th style="min-width: 300px">Kafedra</th>-->
+<!--                    <th style="min-width: 100px">Rol</th>-->
+<!--                    <th style="min-width: 80px">Aktivlik</th>-->
+<!--                    <th style="min-width: 180px">Qo'shilgan sana</th>-->
+                    <th style="min-width: 150px">Amallar</th>
+                </tr>
+                </thead>
+            </table>
+
+            <!-- Right Side -->
+            <div class="works">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab-oui" data-toggle="tab" href="#p-1" role="tab" aria-controls="p-1" aria-selected="true">O'quv-uslubiy ishlar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-idi" data-toggle="tab" href="#p-2" role="tab" aria-controls="p-2" aria-selected="false">Ilmiy-tadqiqot ishlari</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-usi" data-toggle="tab" href="#p-3" role="tab" aria-controls="p-3" aria-selected="false">Ustoz-shogird ishlari</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-m" data-toggle="tab" href="#p-4" role="tab" aria-controls="p4" aria-selected="false">Maqolalar</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="p-1" role="tabpanel" aria-labelledby="p-1">
+                        <table id="workTable1" class="table table-bordered table-hover table-striped table-vcenter">
+
+                            <thead>
+                            <tr>
+                                <th>Mavzu</th>
+                                <th>O'qituvchi</th>
+                                <th>Muddati</th>
+                                <th>Doi havola</th>
+                                <th>Status</th>
+                                <th>Izoh</th>
+                                <th>Amallar</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="p-2" role="tabpanel" aria-labelledby="p-2">
+                        <table id="workTable2" class="table table-bordered table-hover table-striped table-vcenter">
+
+                            <thead>
+                            <tr>
+                                <th>Mavzu</th>
+                                <th>O'qituvchi</th>
+                                <th>Muddati</th>
+                                <th>Doi havola</th>
+                                <th>Status</th>
+                                <th>Izoh</th>
+                                <th>Amallar</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="p-3" role="tabpanel" aria-labelledby="p-3">
+                        <table id="workTable3" class="table table-bordered table-hover table-striped table-vcenter">
+
+                            <thead>
+                            <tr>
+                                <th>Mavzu</th>
+                                <th>O'qituvchi</th>
+                                <th>Talaba</th>
+                                <th>Muddati</th>
+                                <th>Doi havola</th>
+                                <th>Status</th>
+                                <th>Izoh</th>
+                                <th>Amallar</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="p-4" role="tabpanel" aria-labelledby="p-4">
+                        <table id="workTable4" class="table table-bordered table-hover table-striped table-vcenter">
+
+                            <thead>
+                            <tr>
+                                <th>Mavzu</th>
+                                <th>O'qituvchi</th>
+                                <th>Muddati</th>
+                                <th>Doi havola</th>
+                                <th>Status</th>
+                                <th>Izoh</th>
+                                <th>Amallar</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Dynamic Table Full -->
+</div>
+<!-- END Page Content -->
+
+<!-- User List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/user/usersByDepartment.js}"></script>
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId1.js}"></script>
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId2.js}"></script>
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId3.js}"></script>
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId4.js}"></script>
+</section>
+
+</body>
+</html>

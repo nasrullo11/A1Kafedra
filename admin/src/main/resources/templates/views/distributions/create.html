@@ -1,0 +1,193 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Taqsimot qo'shish</title>
+    <!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">-->
+    <!--        <link rel="preconnect" href="https://fonts.gstatic.com">-->
+    <!--        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">-->
+
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" th:action="@{/distributions/create.do}" th:object="${distribution}" method="post" id="my-form">
+
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"> Taqsimot qo'shish</h3>
+                        <div class="block-options">
+                            <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right">
+                                <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+                            <a href="/distributions/list.do" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content" id="search-form">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="distributionUser" class="">O'qituvchi tanlang</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select th:field="*{distributionUser.id}" class="mb-2 form-control" id="distributionUser">
+                                                <option th:each="u : ${teachers}" th:value="${u.id}" th:text="${u.fullName}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3" id="feedback"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="distributionSubject" class="">Fan tanlang</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select th:field="*{distributionSubject.id}" class="mb-2 form-control" id="distributionSubject">
+                                                <option th:each="u : ${subjects}" th:value="${u.id}" th:text="${u.subjectName}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="distributionGroup" class="">Guruh tanlang</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select th:field="*{distributionGroup.id}" class="mb-2 form-control" id="distributionGroup">
+                                                <option th:each="u : ${groups}" th:value="${u.id}" th:text="${u.groupName + ' - ' + u.entranceYear + ' (' + u.amountStudents + ' ta talaba)'}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="distributionLessonType" class="">Mashg'ulot turi</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select th:field="*{distributionLessonType.id}" class="mb-2 form-control" id="distributionLessonType">
+                                                <option th:each="u : ${ltypes}" th:value="${u.id}" th:text="${u.lessonTypeName}"></option>
+                                            </select>
+                                            <em th:if="${#fields.hasErrors('distributionLessonType')}" class="error invalid-feedback" th:errors="*{distributionLessonType}">Mashg'ulot turida xatolik!</em>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="subjectHour" class="">Soat</label>
+                                        </div>
+                                        <div class="col-md-9 inline">
+                                            <input class="form-control" placeholder="Soat" th:field="*{subjectHour}" type="number" id="subjectHour" required style="max-width: 150px">
+                                            <label for="cHour" class="">Nazorat soati</label>
+                                            <input type="number" class="form-control" th:field="*{controlHour}" id="cHour" readonly style="max-width: 150px">
+                                        </div>
+                                        <em th:if="${#fields.hasErrors('subjectHour')}" class="error invalid-feedback" th:errors="*{subjectHour}">Taqsimlangan soatni kiriting!</em>
+                                        <p id="messageNumber"></p>
+                                    </div>
+                                </div>
+                                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                                   class="error invalid-feedback">
+                                    Global
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- distribution Edit JS -->
+<section layout:fragment="scripts">
+    <script>
+        $(document).ready(function() {
+            $('#distributionUser').change(function(event) {
+                event.preventDefault();
+                searchViaAjax();
+            });
+        });
+        function searchViaAjax() {
+            let search = $("#distributionUser").val();
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/ajax/totalHourByUserId",
+                data : JSON.stringify(search),
+                dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                    display(data);
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                    display(e);
+                }
+            });
+        }
+        function display(data) {
+            var json = "<h6 style='color: #2F33AB'>Hozircha "
+                + data.totalHour + " soat olgan</h6>";
+            $('#feedback').html(json);
+        }
+
+        $(document).ready(function() {
+            $('#distributionGroup, #distributionLessonType').change(function() {
+                var lType = $('#distributionLessonType').val();
+                console.log(lType + " dars turi");
+                if(lType == 1) {
+                    console.log(" chaqirjakku");
+                    groupSearchViaAjax();
+                }
+                else{
+                    $('#cHour').val(0);
+                }
+            });
+        });
+
+        function groupSearchViaAjax() {
+            let search = $('#distributionGroup').val();
+            console.log(search + " guruh id");
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/ajax/controlHourByGroupId",
+                data : JSON.stringify(search),
+                dataType : 'json',
+                timeout : 100000,
+                success : function(data) {
+                    console.log("SUCCESS: ", data);
+                    $('#cHour').val(data.totalHour);
+                },
+                error : function(e) {
+                    console.log("ERROR: ", e);
+                }
+            });
+        }
+    </script>
+    <script type="application/javascript" th:src="@{/js/distributions/edit.js}"></script>
+    <script type="application/javascript" th:src="@{/js/distributions/distributions.js}"></script>
+</section>
+
+</body>
+</html>

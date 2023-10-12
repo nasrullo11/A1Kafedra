@@ -1,0 +1,61 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Ilmiy-tadqiqot ishlari</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Dynamic Table Full -->
+    <div class="block">
+        <div class="block-header">
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item"></li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a class="link-fx" href="" style="font-size: 24px">Ilmiy-tadqiqot ishlari</a>
+                    </li>
+                </ol>
+            </nav>
+
+
+            <div class="block-options">
+                <!--<div class="d-inline-block dropdown">-->
+                <a class="btn-shadow btn btn-info" href="/works/create.do/2">
+                    <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus"></i> </span>
+                    Qo'shish
+                </a>
+
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="block-content block-content-full" >
+
+            <table id="workTable2" class="table table-bordered table-hover table-striped table-vcenter">
+
+                <thead>
+                <tr>
+                    <th>Mavzu</th>
+                    <th>O'qituvchi</th>
+                    <th>Muddati</th>
+                    <th>Doi havola</th>
+                    <th>Status</th>
+                    <th>Izoh</th>
+                    <th>Amallar</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!-- END Dynamic Table Full -->
+</div>
+<!-- END Page Content -->
+
+<!-- work List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId2.js}"></script>
+</section>
+
+</body>
+</html>

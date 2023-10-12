@@ -1,0 +1,82 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>iStart kafedra App</title>
+
+    <meta name="description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by istart and published on Themeforest">
+    <meta name="author" content="istart">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
+    <meta property="og:site_name" content="OneUI">
+    <meta property="og:description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by istart and published on Themeforest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" id="css-main" href="/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="/css/themes/amethyst.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+
+<body>
+
+    <!-- Page Content -->
+    <div layout:fragment="content">
+        <!-- Your Block -->
+                        <div class="block">
+            <div class="block-header">
+                <h3 class="block-title">
+                    Title
+                    <small>Get Started</small>
+                </h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option" data-toggle="block-option"
+                            data-action="fullscreen_toggle"></button>
+                    <button type="button" class="btn-block-option" data-toggle="block-option"
+                            data-action="pinned_toggle">
+                        <i class="si si-pin"></i>
+                    </button>
+                    <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="state_toggle" data-action-mode="demo">
+                                        <i class="si si-refresh"></i>
+                                    </button>
+                                    <button type="button" class="btn-block-option" data-toggle="block-option"
+                                            data-action="content_toggle"></button>
+                    <button type="button" class="btn-block-option" data-toggle="block-option"
+                            data-action="close">
+                        <i class="si si-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="block-content font-size-sm">
+                                <p>
+                    Create your own awesome project!
+                                </p>
+                            </div>
+                        </div>
+        <!-- END Your Block -->
+        </div>
+        <!-- END Page Content -->
+
+    <!-- Dashboard JS -->
+    <section layout:fragment="scripts">
+
+    </section>
+</body>
+</html>

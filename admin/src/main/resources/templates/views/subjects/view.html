@@ -1,0 +1,86 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>OneUI - View Users</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"> Данные пользователа &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"> [[${subject.subjectName}]] </small></h3>
+                        <div class="block-options">
+
+                            <a th:href=@{'/subjects/edit.do/'+${subject.id}} class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Редактировать
+                            </a>
+
+                            <a href="/subjects/list.do"class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Назад
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="">Ф.И.О</label>
+                                    <span class="form-control" th:text="${subject.subjectName}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Имя пользователя</label>
+                                    <span class="form-control" th:text="${subject.subjectDepartment.departmentName}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Рол</label>
+                                    <span class="form-control" th:text="${subject.subjectBall}"/>
+                                </div>
+
+
+                            </div>
+
+<!--                            <div class="col-md-6">-->
+<!--                                <div class="form-group">-->
+<!--                                    <label class="">Дата создания</label>-->
+<!--                                    <span class="form-control" th:text="${group.amountStudents}"/>-->
+<!--                                </div>-->
+
+<!--                                <div class="form-group">-->
+<!--                                    <label class="">Активный</label>-->
+<!--                                    <span class="form-control" th:text="${group.groupName}"/>-->
+<!--                                </div>-->
+
+                                <!--                                <div class="form-group">-->
+                                <!--                                    <label class="">Имя файл</label>-->
+                                <!--                                    <span class="form-control" th:text="${group.fileLogo.orgFileName}"/>-->
+
+                                <!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- group List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/subjects/form.js}"></script>
+</section>
+
+</body>
+</html>

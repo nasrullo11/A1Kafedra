@@ -1,0 +1,93 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>OneUI - View Users</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="">
+                        <div class="block">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title"> Данные пользователа &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"> [[${user.username}]] </small></h3>
+                                <div class="block-options">
+
+                                    <a th:href=@{'/users/edit.do/'+${user.id}} class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right"><i
+                                            class="pe-7s-next-2 btn-icon-wrapper"> </i> Редактировать
+                                    </a>
+
+                                    <a href="/users/list.do" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                            class="pe-7s-next-2 btn-icon-wrapper"> </i> Назад
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="block-content">
+                                <div class="row justify-content-center py-sm-3 py-md-5">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="">F.I.Sh</label>
+                                            <span class="form-control" th:text="${user.fullName}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Username</label>
+                                            <span class="form-control" th:text="${user.username}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Rol</label>
+                                            <span class="form-control" th:text="${user.role}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Kafedra</label>
+                                            <span class="form-control" th:text="${user.department.departmentName}"/>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="">Дата создания</label>
+                                            <span class="form-control" th:text="${user.createDate}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Активный</label>
+                                            <span class="form-control" th:text="${user.isActive}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Имя файл</label>
+                                            <span class="form-control" th:text="${user.fileLogo.id}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <img th:src="@{${'/file/get/' + user.fileLogo.id}}" width="400px" height="400px" alt=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+            <!-- END Form Submission in Options -->
+        </div>
+        <!-- END Page Content -->
+
+<!-- User List JS -->
+<section layout:fragment="scripts">
+<script type="application/javascript" th:src="@{/js/user/form.js}"></script>
+</section>
+
+</body>
+</html>

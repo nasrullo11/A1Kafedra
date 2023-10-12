@@ -1,0 +1,76 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Pedagogik ish</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"> Pedagogik ish &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"> [[${work.workTeacher.fullName}]] </small></h3>
+                        <div class="block-options">
+
+                            <a th:href=@{'/works/edit.do/'+${work.id}} class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Tahrirlash
+                            </a>
+
+                            <a th:href=@{'/works/listType'+${work.workType.id}+'.do'} class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="">Sarlavha</label>
+                                    <span class="form-control" th:text="${work.workTitle}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Ish turi</label>
+                                    <span class="form-control" th:text="${work.workType.workTypeName}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Muddati</label>
+                                    <span class="form-control" th:text="${work.workDeadline}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="">Status</label>
+                                    <span class="form-control" th:text="${work.workStatus.workStatusName}"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Izoh</label>
+                                    <span class="form-control" th:text="${work.workDescription}"/>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- work List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/works/form.js}"></script>
+</section>
+
+</body>
+</html>

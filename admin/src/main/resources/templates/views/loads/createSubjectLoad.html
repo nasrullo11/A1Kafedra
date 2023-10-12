@@ -1,0 +1,90 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+  <title>Yuklama qo'shish</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+  <!-- Form Submission in Options -->
+  <div class="row">
+    <div class="col-md-12">
+      <form class="" th:action="@{/loads/create.do}" th:object="${load}" method="post">
+
+        <div class="block">
+          <div class="block-header block-header-default">
+            <h3 class="block-title" th:text="*{'Yuklama qo`shish'}"></h3>
+            <div class="block-options">
+              <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right">
+                <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+              <a th:href="@{|/loads/list-by-subjects.do|}" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                      class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+              </a>
+            </div>
+          </div>
+
+          <div class="block-content">
+            <div class="row justify-content-center py-sm-3 py-md-5">
+              <div class="col-md-7">
+
+                <div class="form-group">
+                    <label for="loadSubject" class="">Fan nomi</label>
+                    <select class="mb-2 form-control" th:field="*{loadSubject.id}" id="loadSubject">
+                        <option th:each="u : ${subjects}" th:value="${u.id}" th:text="${u.subjectName}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="loadField" class="">Yo'nalishi</label>
+                  <select class="mb-2 form-control" th:field="*{loadField.id}" id="loadField">
+                    <option th:each="u : ${fields}" th:value="${u.id}" th:text="${u.fieldName}"></option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="semester" class="">Semester</label>
+                  <select id="semester" th:field="*{semester}" class="mb-2 form-control">
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                    <option th:value="3">3</option>
+                    <option th:value="4">4</option>
+                    <option th:value="5">5</option>
+                    <option th:value="6">6</option>
+                    <option th:value="7">7</option>
+                    <option th:value="8">8</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="subjectHour" class="">Soat</label>
+                  <input id="subjectHour" class="form-control" placeholder="Soat" th:field="*{subjectHour}" type="number">
+                  <em th:if="${#fields.hasErrors('subjectHour')}" class="error invalid-feedback" th:errors="*{subjectHour}">Guruhdagi talabalar sonini kiriting!</em>
+                </div>
+
+                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                   class="error invalid-feedback">
+                  Глобал
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+  <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- load Edit JS -->
+<section layout:fragment="scripts">
+  <script type="application/javascript" th:src="@{/js/loads/edit.js}"></script>
+  <script type="application/javascript" th:src="@{/js/loads/loads.js}"></script>
+</section>
+</body>
+</html>

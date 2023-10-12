@@ -1,0 +1,73 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Fan qo'shish</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" th:action="@{/subjects/create.do}" th:object="${subject}" method="post">
+
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"> Fan qo'shish &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"><span th:text="${subject.subjectName}"/></small></h3>
+                        <div class="block-options">
+                            <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right">
+                                <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+                            <a href="/subjects/list.do" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label for="subjectName" class="">Nomi</label>
+                                    <input class="form-control" placeholder="Fan nomi" th:field="*{subjectName}" type="text">
+                                    <em th:if="${#fields.hasErrors('subjectName')}" class="error invalid-feedback">Iltimos, guruh raqamini kiriting!</em>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subjectBall" class="">Kredit miqdori</label>
+                                    <input class="form-control" placeholder="Kredit miqdori" th:field="*{subjectBall}" type="number">
+                                    <em th:if="${#fields.hasErrors('subjectBall')}" class="error invalid-feedback" th:errors="*{subjectBall}">Guruhdagi talabalar sonini kiriting!</em>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subjectDepartment" class="">Kafedra</label>
+                                    <select th:field="*{subjectDepartment.id}" class="mb-2 form-control">
+                                        <option th:each="u : ${departments}" th:value="${u.id}" th:text="${u.departmentName}"></option>
+                                    </select>
+                                </div>
+
+                                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                                   class="error invalid-feedback">
+                                    Глобал
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- subject Edit JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/subjects/edit.js}"></script>
+    <script type="application/javascript" th:src="@{/js/subjects/subjects.js}"></script>
+</section>
+</body>
+</html>

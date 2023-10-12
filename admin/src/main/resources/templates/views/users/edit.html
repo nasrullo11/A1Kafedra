@@ -1,0 +1,183 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <script>
+        function checkForValidity(){
+            var pw1 = document.getElementById('passwordId').value;
+            var pw2 = document.getElementById('confirm_passwordId').value;
+            if (pw1 == pw2 && pw1.length == pw2.length) {
+                $('#messagePassword').html('Matching').css('color', 'green');
+            } else if(pw1 != pw2 && pw1.length == pw2.length)
+            { $('#messagePassword').html('Not Matching').css('color', 'red');
+            }
+            else if(pw1.length != pw2.length){
+                $('#messagePassword').html(' ');
+            }
+        }
+    </script>
+    <title>OneUI - Edit Users</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" th:action="@{/users/edit.do}" th:object="${user}" method="post">
+                        <div class="block">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title"> Foydalanuvchini tahrirlash &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"><span th:text="${user.fullName}"/></small></h3>
+                                <div class="block-options">
+                                    <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right">
+                                        <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+                                    <a href="/users/list.do"class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                            class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="block-content">
+                                <div class="row justify-content-center py-sm-3 py-md-5">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="fullName" class="">To'liq ismi</label>
+                                            <input id="fullName" class="form-control" placeholder="F.I.Sh" th:field="*{fullName}" type="text">
+                                            <em th:if="${#fields.hasErrors('fullName')}" class="error invalid-feedback">Iltimos, foydalanuvchining to'liq ismini kiriting!</em>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="username" class="">Login</label>
+                                            <input id="username" class="form-control" placeholder="Login" th:field="*{username}" type="text">
+                                            <em th:if="${#fields.hasErrors('username')}" class="error invalid-feedback" th:errors="*{username}">Iltimos, foydalanuvchining to'liq ismini kiriting!</em>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="role" class="">Rol</label>
+                                            <select id="role" th:field="*{role}" class="mb-2 form-control">
+                                                <option th:value="'Kafedra_mudiri'">Kafedra mudiri</option>
+                                                <option th:value="'Uqituvchi'">O'qituvchi</option>
+                                            </select>
+                                        </div>
+
+<!--                                        <div class="form-group">-->
+<!--                                            <label for="department" class="">Kafedra</label>-->
+<!--                                            <select id="department" th:field="*{department}" class="mb-2 form-control">-->
+<!--                                                <option th:each="dep : ${deps}" th:text="${dep.departmentName}" th:value="${dep.id}"></option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+                                        <div class="form-group">
+                                            <label for="passwordId" class="">Parolni kiriting!</label>
+                                            <input th:field="*{password}" class="mb-2 form-control" type="password" id="passwordId">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="confirm_passwordId" class="">Parolni takrorlang!</label>
+                                            <input th:field="*{newPassword}" class="mb-2 form-control" type="password" id="confirm_passwordId" oninput="checkForValidity()">
+                                            <span id="messagePassword"></span>
+                                        </div>
+
+                                        <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                                           class="error invalid-feedback">
+                                            Global
+                                        </p>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label class="">Yaratilgan sanasi</label>
+                                            <span class="form-control" th:text="${user.createDate}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="">Faolligi</label>
+                                            <span class="form-control" th:text="${user.isActive}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label">Fayl nomi</label>
+                                            <div class="input-group">
+                                                <input id="fileNameInput" name="fileNameInput" type="text" th:field="*{fileLogo.orgFileName}" placeholder="Имя файл" class="form-control" readonly/>
+                                                <div class="input-group-prepend">
+                                                    <button type="button" class="btn-shadow btn btn-info" data-toggle="modal" data-target="#addUserPhotoModal">
+                                                        <span class="btn-icon-wrapper pr-2 opacity-7"><i class="pe-7s-photo"></i></span>
+                                                        Rasm qo'shish
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="fileLogo.id">
+                        <input type="hidden" th:field="*{id}">
+<!--                        <input type="hidden" th:field="*{username}">-->
+                    </form>
+                </div>
+
+
+            </div>
+            <!-- END Form Submission in Options -->
+
+
+    <!--Add photo to user profile-->
+    <div class="modal fade" id="addUserPhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Загрузит фото пользователь</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form id="userImageForm" method="post"  enctype="multipart/form-data" class="">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Имя файла</span></div>
+                                    <input id="fileNameModal" name="fileNameModal" type="text" th:value="${fileName}" placeholder="Имя файла" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="position-relative form-group">
+                                <label for="userImage" class="" style="font-weight: bold">Фото</label>
+                                <input id="userImage" class="form-control-file" type="file" name="file">
+                                <small class="form-text text-muted"> (Файл формат должен быть рисунком. "PNG,JPEG,JPG,GIF,BMP")</small>
+                            </div>
+                        </div>
+                    </div>
+                    <input name="id" type="hidden" th:value="${user.id}"/>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <button id="uploadUserImage" type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-primary"><i class="pe-7s-diskette btn-icon-wrapper"></i> Загрузить фото</button>
+                            <button type="button" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-warning pull-right" data-dismiss="modal">Закрыт</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<!-- END Page Content -->
+
+
+<!-- User Edit JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/user/edit.js}"></script>
+    <script type="application/javascript" th:src="@{/js/user/users.js}"></script>
+</section>
+
+
+</body>
+</html>

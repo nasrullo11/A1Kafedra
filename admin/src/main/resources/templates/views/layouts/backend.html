@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>OneUI - iStart Layout</title>
+
+    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Icons Layout-->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="/media/favicons/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/media/favicons/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/favicons/apple-touch-icon-180x180.png">
+    <!-- END Icons -->
+
+    <!-- Stylesheets Layout -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" th:href="@{/js/plugins/datatables/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css}">
+
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" th:href="@{/css/oneui.css}">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="/css/themes/amethyst.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+
+<body>
+<!-- Page Container -->
+
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
+
+    <!-- Side Overlay-->
+    <aside th:replace="fragments/aside :: aside">
+        This sidebar content is going to be replaced.
+    </aside>
+    <!-- END Side Overlay -->
+
+    <!-- Sidebar -->
+    <div th:replace="fragments/sidebar :: sidebar">
+        This sidebar content is going to be replaced.
+    </div>
+    <!-- END Sidebar -->
+
+    <!-- Header -->
+    <div th:replace="fragments/header :: header" >
+        This header content is going to be replaced.
+    </div>
+    <!-- END Header -->
+
+    <!-- Main Container -->
+    <main id="main-container">
+
+        <!-- Page Content -->
+        <div layout:fragment="content" class="content">
+
+            <!-- TODO Main content shu yerda yaratiladi -->
+
+        </div>
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer th:insert="fragments/footer :: footer" class="footer">
+        This content will remain, but other content will be inserted after it.
+    </footer>
+    <!-- END Footer -->
+
+
+
+
+
+
+
+    <!-- Apps Modal -->
+    <!-- Opens from the modal toggle button in the header -->
+    <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-top modal-sm" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Apps</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <div class="row gutters-tiny">
+                            <div class="col-6">
+                                <!-- CRM -->
+                                <a class="block block-rounded block-themed bg-default" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-speedometer fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            CRM
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END CRM -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Products -->
+                                <a class="block block-rounded block-themed bg-danger" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-rocket fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Products
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Products -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Sales -->
+                                <a class="block block-rounded block-themed bg-success mb-0" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-plane fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Sales
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Sales -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Payments -->
+                                <a class="block block-rounded block-themed bg-warning mb-0" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-wallet fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Payments
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Payments -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Apps Modal -->
+</div>
+<!-- END Page Container -->
+
+<!-- Page JS Plugins -->
+<script type="application/javascript" th:src="@{/js/oneui.core.min.js}"></script>
+<!-- oneui JS Code -->
+<!--<script type="application/javascript" th:src="@{/js/test.js}"></script>-->
+
+
+<script type="application/javascript" th:src="@{/js/oneui.app.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/globalErrorHandle.js}"></script>
+<!-- User JS Code -->
+
+<script type="application/javascript" th:src="@{/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/pages/be_tables_datatables.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.print.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.html5.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.flash.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.colVis.min.js}"></script>
+<!-- sweetalert Js Code-->
+<script type="application/javascript" th:src="@{/js/plugins/sweetalert2/sweetalert2.all.js}"></script>
+<script type="application/javascript" th:src="@{/js/app.js}"></script>
+
+<section layout:fragment="scripts">
+</section>
+
+</body>
+</html>

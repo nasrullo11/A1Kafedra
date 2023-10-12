@@ -1,0 +1,56 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>OneUI - Istart Guruhlar</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Dynamic Table Full -->
+    <div class="block">
+        <div class="block-header">
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <h3>Taqsimotlar ro'yxati</h3>
+            </nav>
+
+
+            <div class="block-options">
+                <!--<div class="d-inline-block dropdown">-->
+                <a class="btn-shadow btn btn-info" href="/distributions/create.do">
+                    <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus"></i> </span>
+                    Qo'shish
+                </a>
+
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="block-content block-content-full" >
+
+            <table id="distributionTable" class="table table-bordered table-hover table-striped table-vcenter">
+
+                <thead>
+                <tr>
+                    <th>O'qituvchi</th>
+                    <th>Fan</th>
+                    <th>Guruh</th>
+                    <th>Mashg'ulot</th>
+                    <th>Soat (Jami: <span th:text="${total}"></span>)</th>
+                    <th>Amallar</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+    <!-- END Dynamic Table Full -->
+</div>
+<!-- END Page Content -->
+
+<!-- distribution List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/distributions/distributions.js}"></script>
+</section>
+
+</body>
+</html>

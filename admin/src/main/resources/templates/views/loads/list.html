@@ -1,0 +1,53 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Yuklamalar</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Dynamic Table Full -->
+    <div class="block">
+        <div class="block-header">
+            <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
+                <h4 th:text="${subject.subjectName + ' fani bo`yicha yuklamalar'}"></h4>
+            </nav>
+
+            <div class="block-options">
+                <!--<div class="d-inline-block dropdown">-->
+                <a class="btn-shadow btn btn-info" th:href="@{|/loads/create.do/${subject.id}|}">
+                    <span class="btn-icon-wrapper pr-2 opacity-7"> <i class="fa fa-plus"></i> </span>
+                    Qo'shish
+                </a>
+
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="block-content block-content-full">
+
+            <table style="width: 100%; overflow: scroll" id="loadTable" class="table table-bordered table-hover table-striped table-vcenter">
+
+                <thead>
+                <tr>
+                    <th>Yo'nalish</th>
+                    <th>Semestr</th>
+                    <th>Soat</th>
+                    <th>Amallar</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!-- END Dynamic Table Full -->
+<!--    <label for="subjectId">SubjectId</label>-->
+    <input type="hidden" th:value="${subject.id}" id="subjectId">
+</div>
+<!-- END Page Content -->
+<!-- load List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/loads/loads.js}"></script>
+</section>
+
+</body>
+</html>

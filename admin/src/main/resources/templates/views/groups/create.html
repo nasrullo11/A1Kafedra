@@ -1,0 +1,125 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Guruh qo'shish</title>
+<!--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">-->
+<!--        <link rel="preconnect" href="https://fonts.gstatic.com">-->
+<!--        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">-->
+
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" th:action="@{/groups/create.do}" th:object="${group}" method="post" id="my-form">
+
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title"> Guruh qo'shish &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"><span th:text="${group.groupName}"/></small></h3>
+                        <div class="block-options">
+                            <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right" id="checkbtn" onclick="checkBtn()">
+                                <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+                            <a href="/groups/list.do" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="checkinput1" class="">Nomi (raqami)</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input class="form-control" placeholder="Guruh nomi" th:field="*{groupName}" type="text" id="checkinput1" oninput="checkInputName()" required>
+                                        </div>
+                                        <em th:if="${#fields.hasErrors('groupName')}" class="error invalid-feedback">Iltimos, guruh raqamini kiriting!</em>
+                                        <p id="messageName"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="entranceYear" class="">Kirgan yili</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input class="form-control" id="entranceYear" th:field="*{entranceYear}" type="number">
+                                        </div>
+                                        <em th:if="${#fields.hasErrors('entranceYear')}" class="error invalid-feedback" th:errors="*{entranceYear}">Guruhning o'qishga qabul qilingan yilini kiriting!</em>
+                                        <p id="messageYear"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="checkinput3" class="">Talabalar soni</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input class="form-control" placeholder="Talabalar soni" th:field="*{amountStudents}" type="number" id="checkinput3" oninput="checkInputNumber()" required>
+                                        </div>
+                                        <em th:if="${#fields.hasErrors('amountStudents')}" class="error invalid-feedback" th:errors="*{amountStudents}">Guruhdagi talabalar sonini kiriting!</em>
+                                        <p id="messageNumber"></p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="yunalish" class="">Yo'nalishi</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="mb-2 form-control" id="yunalish">
+                                                <option th:each="u : ${fields}" th:value="${u.id}" th:text="${u.fieldName}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="groupEducationType" class="">Ta'lim turi</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select id="groupEducationType" th:field="*{groupEducationType.id}" class="mb-2 form-control">
+                                                <option th:each="u : ${etypes}" th:value="${u.id}" th:text="${u.educationTypeName}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                                   class="error invalid-feedback">
+                                    Глобал
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+</div>
+<!-- END Page Content -->
+
+<!-- Group Edit JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/groups/edit.js}"></script>
+    <script type="application/javascript" th:src="@{/js/groups/groups.js}"></script>
+    <script type="application/javascript" th:src="@{/js/groups/option.js}"></script>
+</section>
+
+</body>
+</html>

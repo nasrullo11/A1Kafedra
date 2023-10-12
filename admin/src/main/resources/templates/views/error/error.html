@@ -1,0 +1,52 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>iStart kafedra App</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Your Block -->
+    <div class="block">
+        <div class="block-header">
+            <h3 class="block-title">
+                Error Page
+                <small>Something went wrong!</small>
+            </h3>
+            <div class="block-options">
+                <button type="button" class="btn-block-option" data-toggle="block-option"
+                        data-action="fullscreen_toggle"></button>
+                <button type="button" class="btn-block-option" data-toggle="block-option"
+                        data-action="pinned_toggle">
+                    <i class="si si-pin"></i>
+                </button>
+                <button type="button" class="btn-block-option" data-toggle="block-option"
+                        data-action="state_toggle" data-action-mode="demo">
+                    <i class="si si-refresh"></i>
+                </button>
+                <button type="button" class="btn-block-option" data-toggle="block-option"
+                        data-action="content_toggle"></button>
+                <button type="button" class="btn-block-option" data-toggle="block-option"
+                        data-action="close">
+                    <i class="si si-close"></i>
+                </button>
+            </div>
+        </div>
+        <div class="block-content font-size-sm">
+            <p>
+                Our Engineers are on it!
+            </p>
+            <a href="/">Go Home</a>
+        </div>
+    </div>
+    <!-- END Your Block -->
+</div>
+<!-- END Page Content -->
+
+<!-- Dashboard JS -->
+<section layout:fragment="scripts">
+
+</section>
+</body>
+</html>

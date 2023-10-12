@@ -1,0 +1,139 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>Pedagogik ish tahrirlash</title>
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Form Submission in Options -->
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" th:action="@{/works/edit.do}" th:object="${work}" method="post">
+                <div class="block">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title" th:text="*{workType.workTypeName + 'ni tahrirlash'}"> &#8594; <small class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"><span th:text="${work.workTeacher.fullName}"/></small></h3>
+                        <div class="block-options">
+                            <button type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-primary pull-right">
+                                <i class="pe-7s-diskette btn-icon-wrapper"></i> Saqlash </button>
+
+                            <a href="/works/listType1.do" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-outline-warning pull-right"><i
+                                    class="pe-7s-next-2 btn-icon-wrapper"> </i> Orqaga
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="block-content">
+                        <div class="row justify-content-center py-sm-3 py-md-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="workTitle" class="">Mavzu</label><br>
+                                    <input id="workTitle" class="form-control" placeholder="Mavzu" th:field="*{workTitle}" type="text">
+                                    <em th:if="${#fields.hasErrors('workTitle')}" class="error invalid-feedback">Iltimos, guruh raqamini kiriting!</em>
+                                </div>
+
+                                <div th:if="*{workType.id == 3}" class="form-group">
+                                    <label for="student" class="">Talaba va guruhi</label><br>
+                                    <input id="student" class="form-control" placeholder="Masalan: Olimov Anvar 942-16" th:field="*{workStudent}" type="text">
+                                    <em th:if="${#fields.hasErrors('workStudent')}" class="error invalid-feedback">Iltimos, talaba ism-familiyasini va guruhini kiriting!</em>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="workDeadline" class="">Muddati</label><br>
+                                    <input id="workDeadline" class="form-control" placeholder="Muddati" th:field="*{workDeadline}" type="text">
+                                    <em th:if="${#fields.hasErrors('workDeadline')}" class="error invalid-feedback" th:errors="*{workDeadline}">Guruhdagi talabalar sonini kiriting!</em>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="workDoiLink" class="">Doi havola</label><br>
+                                    <input id="workDoiLink" class="form-control" placeholder="Doi ssilka" th:field="*{workDoiLink}" type="text">
+                                    <em th:if="${#fields.hasErrors('workDoiLink')}" class="error invalid-feedback" th:errors="*{workDoiLink}">Guruhdagi talabalar sonini kiriting!</em>
+                                </div>
+
+                                <input type="hidden" th:field="*{workType.id}">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="taid" class="">Izoh</label><br>
+                                    <textarea th:field="*{workDescription}" class="mb-2 form-control" id="taid" rows="9" cols="55"></textarea>
+                                    <em th:if="${#fields.hasErrors('workDescription')}" class="error invalid-feedback" th:errors="*{workDescription}">Guruhdagi talabalar sonini kiriting!</em>
+                                </div>
+
+                                <input name="workStatus.id" type="hidden" th:value="${work.workStatus.id}"/>
+<!--                                <input name="workTeacher.id" type="hidden" th:value="${#authentication.principal.userId}"/>-->
+
+                                <p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+                                   class="error invalid-feedback">
+                                    Глобал
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" th:field="*{id}">
+                <!--                <input type="hidden" th:field="*{groupName}">-->
+            </form>
+        </div>
+
+
+    </div>
+    <!-- END Form Submission in Options -->
+
+
+    <!--Add photo to user profile-->
+<!--    <div class="modal fade" id="addTeacherPhotoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="exampleModalLabel">Загрузит фото пользователь</h5>-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">-->
+<!--                        <span aria-hidden="true">×</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <form id="teacherImageForm" method="post"  enctype="multipart/form-data" class="">-->
+<!--                    <div class="modal-body">-->
+<!--                        <div class="form-row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="position-relative form-group">-->
+<!--                                    <div class="input-group">-->
+<!--                                        <div class="input-group-prepend">-->
+<!--                                            <span class="input-group-text">Имя файла</span></div>-->
+<!--                                        <input id="fileNameModal" name="fileNameModal" type="text" th:value="${fileName}" placeholder="Имя файла" class="form-control"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="position-relative form-group">-->
+<!--                                    <label for="teacherImage" class="" style="font-weight: bold">Фото</label>-->
+<!--                                    <input id="teacherImage" class="form-control-file" type="file" name="file">-->
+<!--                                    <small class="form-text text-muted"> (Файл формат должен быть рисунком. "PNG,JPEG,JPG,GIF,BMP")</small>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <input name="id" type="hidden" th:value="${group.id}"/>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <div class="form-row">-->
+<!--                            <div class="col-md-12">-->
+<!--                                <button id="uploadTeacherImage" type="submit" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-primary"><i class="pe-7s-diskette btn-icon-wrapper"></i> Загрузить фото</button>-->
+<!--                                <button type="button" class="mb-2 mr-2 btn-icon btn-shadow btn-outline-2x btn btn-warning pull-right" data-dismiss="modal">Закрыт</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!-- END Page Content -->
+
+
+<!-- User Edit JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/works/edit.js}"></script>
+    <script type="application/javascript" th:src="@{/js/works/worksByTypeId1.js}"></script>
+</section>
+
+
+</body>
+</html>

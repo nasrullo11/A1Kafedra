@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav id="sidebar" aria-label="Main Navigation" th:fragment="sidebar">
+    <!-- Side Header -->
+    <div class="content-header bg-white-5">
+        <!-- Logo -->
+        <a class="font-w600 text-dual" href="">
+            <i class="fas fa-layer-group text-primary" style="font-size: 22px"></i>
+            <span class="smini-hide">
+                            <span class="font-w700 font-size-h5">A1Kafedra</span>
+                        </span>
+        </a>
+        <!-- END Logo -->
+
+        <!-- Options -->
+        <div>
+            <!-- Color Variations -->
+            <div class="dropdown d-inline-block ml-3">
+                <a class="text-dual font-size-sm" id="sidebar-themes-dropdown" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" href="#">
+                    <i class="si si-drop"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0"
+                     aria-labelledby="sidebar-themes-dropdown">
+                    <!-- Color Themes -->
+                    <!-- Layout API, functionality initialized in Template._uiHandleTheme() -->
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="default" href="#">
+                        <span>Default</span>
+                        <i class="fa fa-circle text-default"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="assets/css/themes/amethyst.min.css" href="#">
+                        <span>Amethyst</span>
+                        <i class="fa fa-circle text-amethyst"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="assets/css/themes/city.min.css" href="#">
+                        <span>City</span>
+                        <i class="fa fa-circle text-city"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="#">
+                        <span>Flat</span>
+                        <i class="fa fa-circle text-flat"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="assets/css/themes/modern.min.css" href="#">
+                        <span>Modern</span>
+                        <i class="fa fa-circle text-modern"></i>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between"
+                       data-toggle="theme" data-theme="assets/css/themes/smooth.min.css" href="#">
+                        <span>Smooth</span>
+                        <i class="fa fa-circle text-smooth"></i>
+                    </a>
+                    <!-- END Color Themes -->
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Sidebar Styles -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_light"
+                       href="#">
+                        <span>Sidebar Light</span>
+                    </a>
+                    <a class="dropdown-item" data-toggle="layout" data-action="sidebar_style_dark" href="#">
+                        <span>Sidebar Dark</span>
+                    </a>
+                    <!-- Sidebar Styles -->
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Header Styles -->
+                    <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+                    <a class="dropdown-item" data-toggle="layout" data-action="header_style_light" href="#">
+                        <span>Header Light</span>
+                    </a>
+                    <a class="dropdown-item" data-toggle="layout" data-action="header_style_dark" href="#">
+                        <span>Header Dark</span>
+                    </a>
+                    <!-- Header Styles -->
+                </div>
+            </div>
+            <!-- END Themes -->
+
+            <!-- Close Sidebar, Visible only on mobile screens -->
+            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+            <a class="d-lg-none text-dual ml-3" data-toggle="layout" data-action="sidebar_close"
+               href="javascript:void(0)">
+                <i class="fa fa-times"></i>
+            </a>
+            <!-- END Close Sidebar -->
+        </div>
+        <!-- END Options -->
+    </div>
+    <!-- END Side Header -->
+
+    <!-- Side Navigation -->
+    <!-- Side Navigation -->
+    <div class="content-side content-side-full">
+        <ul class="nav-main">
+
+            <li class="nav-main-item" th:classappend="${(#request.getServletPath() == '/users/list.do' ? 'open' : '') + (#request.getServletPath() == '/users/listByDepartment.do' ? 'open' : '')}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                    <i class="nav-main-link-icon fas fa-chalkboard-teacher"></i>
+                    <span class="nav-main-link-name">O'qituvchilar</span>
+                </a>
+            <ul class="nav-main-submenu">
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="/users/list.do" th:classappend="${#request.getServletPath() == '/users/list.do' ? 'active' : ''}"> <!-- active class ni qoshib qoyiladi-->
+                        <span class="nav-main-link-name">Barcha o'qituvchilar</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="/users/listByDepartment.do" th:classappend="${#request.getServletPath() == '/users/listByDepartment.do' ? 'active' : ''}"> <!-- active class ni qoshib qoyiladi-->
+                        <span class="nav-main-link-name">Kafedra o'qituvchilari
+<!--                            <span th:text="${#authentication.principal.department + ' )'}">)</span>-->
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            </li>
+            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/groups/list.do' ? 'open' : ''}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link" href="/groups/list.do" th:classappend="${#request.getServletPath() == '/groups/list.do' ? 'active' : ''}">  <!--active class ni qoshib qoyiladi -->
+                    <i class="nav-main-link-icon fas fa-users"></i>
+                    <span class="nav-main-link-name">Guruhlar</span>
+                </a>
+            </li>
+
+            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/subjects/list.do' ? 'open' : ''}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link" href="/subjects/list.do" th:classappend="${#request.getServletPath() == '/subjects/list.do' ? 'active' : ''}">  <!--active class ni qoshib qoyiladi -->
+                    <i class="nav-main-link-icon fa fa-file-invoice"></i>
+                    <span class="nav-main-link-name">Fanlar</span>
+                </a>
+            </li>
+
+<!--            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/subjects/list.do' ? 'open' : ''}">  &lt;!&ndash;open class ni qoshib qoyiladi &ndash;&gt;-->
+<!--                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">-->
+<!--                    <i class="nav-main-link-icon fa fa-file-invoice"></i>-->
+<!--                    <span class="nav-main-link-name">Fanlar</span>-->
+<!--                </a>-->
+<!--                <ul class="nav-main-submenu">-->
+<!--                    <li class="nav-main-item">-->
+<!--                        <a class="nav-main-link" href="/subjects/list.do" th:classappend="${#request.getServletPath() == '/subjects/list.do' ? 'active' : ''}">-->
+<!--                            <span class="nav-main-link-name">Barcha fanlar</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-main-item">-->
+<!--                        <a class="nav-main-link" href="#">-->
+<!--                            <span class="nav-main-link-name">Kafedra fanlari</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </li>-->
+            <li class="nav-main-item" th:classappend="${(#request.getServletPath() == '/works/listType1.do' ? 'open' : '') + (#request.getServletPath() == '/works/listType2.do' ? 'open' : '') + (#request.getServletPath() == '/works/listType3.do' ? 'open' : '') + (#request.getServletPath() == '/works/listType4.do' ? 'open' : '')}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
+                    <i class="nav-main-link-icon fas fa-calendar-alt"></i>
+                    <span class="nav-main-link-name">Pedagogik ishlar</span>
+                </a>
+                <ul class="nav-main-submenu">
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" href="/works/listType1.do" th:classappend="${#request.getServletPath() == '/works/listType1.do' ? 'active' : ''}">
+                            <span class="nav-main-link-name">O'quv-uslubiy ishlar</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" href="/works/listType2.do" th:classappend="${#request.getServletPath() == '/works/listType2.do' ? 'active' : ''}">
+                            <span class="nav-main-link-name">Ilmiy-tadqiqot ishlari</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" href="/works/listType3.do" th:classappend="${#request.getServletPath() == '/works/listType3.do' ? 'active' : ''}">
+                            <span class="nav-main-link-name">Ustoz-shogird ishlari</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link" href="/works/listType4.do" th:classappend="${#request.getServletPath() == '/works/listType4.do' ? 'active' : ''}">
+                            <span class="nav-main-link-name">Maqolalar</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/distributions/list.do' ? 'open' : ''}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link" href="/distributions/list.do" th:classappend="${#request.getServletPath() == '/distributions/list.do' ? 'active' : ''}">  <!--active class ni qoshib qoyiladi -->
+                    <i class="nav-main-link-icon fa fa-divide"></i>
+                    <span class="nav-main-link-name">Taqsimot</span>
+                </a>
+            </li>
+            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/loads/list-by-subjects.do' ? 'open' : ''}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link" href="/loads/list-by-subjects.do" th:classappend="${#request.getServletPath() == '/loads/list-by-subjects.do' ? 'active' : ''}">  <!--active class ni qoshib qoyiladi -->
+                    <i class="nav-main-link-icon fa fa-file-download"></i>
+                    <span class="nav-main-link-name">Yuklama</span>
+                </a>
+            </li>
+
+            <li class="nav-main-item" th:classappend="${#request.getServletPath() == '/fields/list.do' ? 'open' : ''}">  <!--open class ni qoshib qoyiladi -->
+                <a class="nav-main-link" href="/fields/list.do" th:classappend="${#request.getServletPath() == '/fields/list.do' ? 'active' : ''}">  <!--active class ni qoshib qoyiladi -->
+                    <i class="nav-main-link-icon fa fa-arrows-alt"></i>
+                    <span class="nav-main-link-name">Yo'nalishlar</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- END Side Navigation -->
+</nav>
+<!-- END Sidebar -->
+
+</body>
+</html>
